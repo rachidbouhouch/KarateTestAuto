@@ -1,5 +1,6 @@
 package org.sid.runner;
 
+import com.intuit.karate.KarateOptions;
 import com.intuit.karate.Results;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
@@ -18,14 +19,14 @@ public class ParallelRunnerWithCucumberReport {
 
     @Test
     public void testParallel() {
-        Results results = com.intuit.karate.Runner.path("classpath:org/sid/feature").tags("@Valid").parallel(10);
+        Results results = com.intuit.karate.Runner.path("classpath:org/sid/feature").outputCucumberJson(true).parallel(10);
         CustomCucumberReport extentReport = new CustomCucumberReport()
                 .withReportDir(results.getReportDir())
                 .withReportTitle("Karate Test Execution Cucumber Report")
                 .withKarateResult(results);
         extentReport.generateExtentReport();
 
-        Assert.assertTrue(results.getErrorMessages(), results.getFailCount() == 0);
+        Assert.assertEquals(results.getErrorMessages(), 0, results.getFailCount());
     }
 
 }

@@ -88,7 +88,7 @@ public class CustomExtentReport {
     }
 
     private List<ScenarioResult> getScenarioResults() {
-        return this.testResults.getScenarioResults();
+        return (List<ScenarioResult>) this.testResults.getScenarioResults();
     }
 
     private String getFeatureName(ScenarioResult scenarioResult) {
