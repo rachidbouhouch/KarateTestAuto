@@ -19,7 +19,7 @@ public class ParallelRunnerWithCucumberReport {
 
     @Test
     public void testParallel() {
-        Results results = com.intuit.karate.sqdqsqsd.path("classpath:org/sid/feature").outputCucumberJson(true).parallel(10);
+        Results results = com.intuit.karate.Runner.path("classpath:org/sid/feature").outputCucumberJson(true).parallel(10);
         CustomCucumberReport extentReport = new CustomCucumberReport()
                 .withReportDir(results.getReportDir())
                 .withReportTitle("Karate Test Execution Cucumber")
