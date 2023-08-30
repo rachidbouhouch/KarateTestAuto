@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version
+        maven "Maven_Home"
+    }
+
+    stages {
+        stage('Stage 1 : Checkout code') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'main', credentialsId: '70fba11b-1733-456f-9294-1e55f1dd4d5f', url: 'https://github.com/rachidbouhouch/KarateTestAuto'
+            }
+        }
+        stage('Stage 2 : Compile code') {
+            steps {
+                // compile code 
+                bat 'mvn compile'
+            }
+        }
+        stage('Stage 3 : Run test') {
+            steps {
+                
+                // Run Maven on a Unix agent.
+                bat 'mvn test -Dtest=runner/ParallelRunnerWithCucumberReport -Dkarate.options="--tags @Valid"'
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
+        stage('stage 4 : create build') {
+            steps {
+                
+                // Run Maven on a Unix agent.
+                bat 'mvn package'
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
+        
+    }
+    
+}
