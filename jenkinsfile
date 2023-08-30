@@ -16,7 +16,7 @@ pipeline {
         stage('Stage 2 : Compile code') {
             steps {
                 // compile code 
-                bat 'mvn compile'
+                bat 'mvn clean compile'
             }
         }
         stage('Stage 3 : Run test') {
