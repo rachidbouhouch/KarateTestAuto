@@ -22,7 +22,7 @@ public class ParallelRunnerWithCucumberReport {
         Results results = com.intuit.karate.Runner.path("classpath:org/sid/feature").outputCucumberJson(true).parallel(10);
         CustomCucumberReport extentReport = new CustomCucumberReport()
                 .withReportDir(results.getReportDir())
-                .withReportTitle("Karate Test Execution Cucumber Report")
+                .withReportTitle("Karate Test Execution Cucumber")
                 .withKarateResult(results);
         extentReport.generateExtentReport();
 
