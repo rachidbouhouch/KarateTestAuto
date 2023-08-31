@@ -21,30 +21,21 @@ pipeline {
         }
         stage('Stage 3 : Run test') {
             steps {
-                
-                // Run Maven on a Unix agent.
                 bat 'mvn test -Dtest=runner/ParallelRunnerWithCucumberReport -Dkarate.options="--tags @Valid"'
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
         stage('stage 4 : create build') {
             steps {
                 
-                // Run Maven on a Unix agent.
-                bat 'mvn package'
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                // Run Maven package
+                bat 'mvn package
             }
         }
         
     }
                     post{
-
 			    success {  
-                             echo 'This will run only if successful'  
+                             echo 'successful'  
                              }  
                              failure {  
                          mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "rachidbouhouch21@gmail.com";  
