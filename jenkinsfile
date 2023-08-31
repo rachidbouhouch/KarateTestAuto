@@ -28,7 +28,7 @@ pipeline {
             steps {
                 
                 // Run Maven package
-                bat 'mvn package
+                bat 'mvn package'
             }
         }
         
